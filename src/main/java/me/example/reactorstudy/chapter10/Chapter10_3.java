@@ -30,59 +30,59 @@ public class Chapter10_3 {
 // 3. runOn()으로 실행하지 않는 경우 그냥 메인 쓰레드에서 실행됨.publishOn() 이후의 코드만 스케쥴러에서 실행됨. 따라서 아래와 같이 실행됨.
 //
 /*
-22:49:11.634 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- createInteger
-22:49:11.709 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.711 [main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
-22:49:11.712 [parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 3
-22:49:11.712 [parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 6
-22:49:11.712 [parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 4
-22:49:11.712 [parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 5
-22:49:11.712 [parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 7
-22:49:11.713 [parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 6
-22:49:11.713 [parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 3
-22:49:11.712 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 1
-22:49:11.713 [parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 16
-22:49:11.713 [parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 13
-22:49:11.712 [parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 10
-22:49:11.712 [parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 8
-22:49:11.713 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 1
-22:49:11.713 [parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 10
-22:49:11.712 [parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 9
-22:49:11.713 [parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 4
-22:49:11.713 [parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 9
-22:49:11.713 [parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 5
-22:49:11.713 [parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 19
-22:49:11.713 [parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 7
-22:49:11.713 [parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 15
-22:49:11.713 [parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 19
-22:49:11.712 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 2
-22:49:11.713 [parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 15
-22:49:11.713 [parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 13
-22:49:11.713 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 2
-22:49:11.713 [parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 16
-22:49:11.713 [parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 8
-22:49:11.713 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 11
-22:49:11.713 [parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 18
-22:49:11.713 [parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 20
-22:49:11.713 [parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 18
-22:49:11.713 [parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 14
-22:49:11.713 [parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 20
-22:49:11.713 [parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 14
-22:49:11.713 [parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 17
-22:49:11.713 [parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 17
-22:49:11.713 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 12
-22:49:11.713 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 11
-22:49:11.713 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 12
-22:49:11.713 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 21
-22:49:11.713 [parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 21
-22:49:11.713 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 22
-22:49:11.713 [parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 22
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- createInteger
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[main] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnSubscribe. it means flux are started to be subscribed.
+[parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 3
+[parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 6
+[parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 4
+[parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 5
+[parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 7
+[parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 6
+[parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 3
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 1
+[parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 16
+[parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 13
+[parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 10
+[parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 8
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 1
+[parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 10
+[parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 9
+[parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 4
+[parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 9
+[parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 5
+[parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 19
+[parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 7
+[parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 15
+[parallel-9] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 19
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 2
+[parallel-5] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 15
+[parallel-3] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 13
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 2
+[parallel-6] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 16
+[parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 8
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 11
+[parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 18
+[parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 20
+[parallel-8] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 18
+[parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 14
+[parallel-10] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 20
+[parallel-4] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 14
+[parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 17
+[parallel-7] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 17
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 12
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 11
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 12
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 21
+[parallel-1] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 21
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # doOnNext: 22
+[parallel-2] INFO me.example.reactorstudy.chapter10.Chapter10_3 -- # onNext: 22
  */

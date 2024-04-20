@@ -17,17 +17,34 @@ public class Chapter9Example3 {
 
     public static void main(String[] args) throws InterruptedException {
 
-        final One<String> sinksOne = Sinks.one();
-        final Mono<String> mono = sinksOne.asMono();
+        main2();
+//        final One<String> sinksOne = Sinks.one();
+//        final Mono<String> mono = sinksOne.asMono();
+//
+//        sinksOne.emitValue("Hello Reactor", EmitFailureHandler.FAIL_FAST);
+//
+//        // Mono이기 때문에 하나의 데이터만 전달됨.
+//        // Debug를 찍으면 reactor.core.publisher.Operator - onNextDropped : Hi Reactor라고 뜬다.
+//        sinksOne.emitValue("Hi Reactor", EmitFailureHandler.FAIL_FAST);
+//
+//        mono.subscribe(data -> log.info("# Subscriber1 {}", data));
+//        mono.subscribe(data -> log.info("# Subscriber2 {}", data));
+    }
 
-        sinksOne.emitValue("Hello Reactor", EmitFailureHandler.FAIL_FAST);
-
-        // Mono이기 때문에 하나의 데이터만 전달됨.
-        // Debug를 찍으면 reactor.core.publisher.Operator - onNextDropped : Hi Reactor라고 뜬다.
-        sinksOne.emitValue("Hi Reactor", EmitFailureHandler.FAIL_FAST);
-
-        mono.subscribe(data -> log.info("# Subscriber1 {}", data));
-        mono.subscribe(data -> log.info("# Subscriber2 {}", data));
+    public static void main2() {
+        Flux.create(emitter -> {
+                IntStream.range(0, 10).parallel().forEach(i -> {
+                    if (!emitter.isCancelled()) {
+                        emitter.next(i);
+                    }
+                });
+                emitter.complete();
+            })
+            .subscribe(
+                    data -> System.out.println("Received: " + data),
+                    error -> error.printStackTrace(),
+                    () -> System.out.println("Completed")
+            );
     }
 
 }

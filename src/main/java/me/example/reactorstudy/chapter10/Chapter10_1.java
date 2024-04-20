@@ -14,6 +14,59 @@ public class Chapter10_1 {
 
     public static void main(String[] args) throws InterruptedException {
 
+
+        // PublishOn() 0번 사용한 경우.
+        Flux.fromArray(new Integer[] { 1, 2, 3, 4, 5 })
+            .doOnNext(data -> log.info("# doOnNext fromArray: {}", data))
+            .filter(data -> data > 3)
+            .doOnNext(data -> log.info("# doOnNext filter: {}", data))
+            .map(data -> data * 10)
+            .doOnNext(data -> log.info("# doOnNext map: {}", data))
+            .subscribe(data -> log.info("# onNext: {}", data));
+
+        // PublishOn() 1번 사용한 경우.
+        Flux.fromArray(new Integer[] { 1, 2, 3, 4, 5 })
+            .doOnNext(data -> log.info("# doOnNext fromArray: {}", data))
+            .publishOn(Schedulers.single())
+            .filter(data -> data > 3)
+            .doOnNext(data -> log.info("# doOnNext filter: {}", data))
+            .map(data -> data * 10)
+            .doOnNext(data -> log.info("# doOnNext map: {}", data))
+            .subscribe(data -> log.info("# onNext: {}", data));
+
+        // PublishOn() 2번 사용한 경우.
+        Flux.fromArray(new Integer[] { 1, 2, 3, 4, 5 })
+            .doOnNext(data -> log.info("# doOnNext fromArray: {}", data))
+            .publishOn(Schedulers.single())
+            .filter(data -> data > 3)
+            .doOnNext(data -> log.info("# doOnNext filter: {}", data))
+            .publishOn(Schedulers.boundedElastic())
+            .map(data -> data * 10)
+            .doOnNext(data -> log.info("# doOnNext map: {}", data))
+            .subscribe(data -> log.info("# onNext: {}", data));
+
+        // SubscribeOn + PublishOn() 사용한 경우.
+        Flux.fromArray(new Integer[] { 1, 2, 3, 4, 5 })
+            .doOnNext(data -> log.info("# doOnNext fromArray: {}", data))
+            .subscribeOn(Schedulers.boundedElastic())
+            .filter(data -> data > 3)
+            .doOnNext(data -> log.info("# doOnNext filter: {}", data))
+            .publishOn(Schedulers.single())
+            .map(data -> data * 10)
+            .doOnNext(data -> log.info("# doOnNext map: {}", data))
+            .subscribe(data -> log.info("# onNext: {}", data));
+
+        // PublishOn() 사용한 경우.
+        Flux.fromArray(new Integer[] { 1, 2, 3, 4, 5 })
+            .publishOn(Schedulers.single())
+            .doOnNext(data -> log.info("# doOnNext: {}", data))
+            .doOnSubscribe(
+                    subscription -> log.info("# doOnSubscribe. it means flux are started to be subscribed."))
+            .subscribe(data -> log.info("# onNext: {}", data));
+
+
+
+
         Flux.fromArray(createInteger())
             .subscribeOn(Schedulers.boundedElastic())
             .doOnNext(data -> log.info("# doOnNext: {}", data))
